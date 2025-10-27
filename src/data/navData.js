@@ -89,6 +89,35 @@ export const navData = [
     ]
   },
   {
+    title: '🧪 示例网站',
+    links: [
+      {
+        title: 'Example Domain',
+        url: 'https://example.com',
+        icon: '🧪',
+        description: 'IANA 提供的演示站点',
+        tags: ['示例', 'HTTP', '演示'],
+        rating: 3,
+      },
+      {
+        title: 'W3C',
+        url: 'https://www.w3.org',
+        icon: '🌐',
+        description: 'Web 标准组织',
+        tags: ['标准', 'Web', '文档'],
+        rating: 4,
+      },
+      {
+        title: 'Svelte',
+        url: 'https://svelte.dev',
+        icon: '⚡',
+        description: '构建更快的 Web 应用框架',
+        tags: ['框架', '前端', 'Svelte'],
+        rating: 5,
+      }
+    ]
+  },
+  {
     title: '💻 开发工具',
     links: [
       {

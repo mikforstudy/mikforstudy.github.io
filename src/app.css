@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 3D 翻转支持 */
+.perspective {
+	perspective: 1200px;
+}
+
+.flip-container {
+	transform-style: preserve-3d;
+	transition: transform 700ms ease;
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+
+/* 防止翻转后显示背面反向渲染造成的锯齿与闪烁 */
+.backface-hidden {
+	backface-visibility: hidden;
+}
