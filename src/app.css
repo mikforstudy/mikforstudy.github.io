@@ -5,11 +5,14 @@
 /* 3D 翻转支持 */
 .perspective {
 	perspective: 1200px;
+	min-height: 100vh;
 }
 
 .flip-container {
 	transform-style: preserve-3d;
 	transition: transform 700ms ease;
+	position: relative;
+	min-height: 100vh;
 }
 
 .flipped {
@@ -19,4 +22,21 @@
 /* 防止翻转后显示背面反向渲染造成的锯齿与闪烁 */
 .backface-hidden {
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.flip-face {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+}
+
+.flip-front {
+	transform: rotateY(0deg);
+}
+
+.flip-back {
+	transform: rotateY(180deg);
 }

@@ -18,6 +18,26 @@
     }
   }
   
+  // 获取网站的 favicon
+  function getFaviconUrl(url) {
+    try {
+      const domain = new URL(url).hostname;
+      // 使用 Google Favicon API
+      return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+    } catch (e) {
+      return null;
+    }
+  }
+  
+  // favicon 加载失败时的备用方案
+  function handleFaviconError(event, link) {
+    // 如果有 icon 字段，显示 emoji
+    if (link.icon) {
+      event.target.style.display = 'none';
+      event.target.nextElementSibling.style.display = 'block';
+    }
+  }
+  
   // 组件加载时输出
   console.log('NavSection loaded at', new Date().toLocaleTimeString());
   console.log('onSiteClick prop:', onSiteClick);
@@ -34,9 +54,19 @@
         class="group relative p-5 bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
       >
         <div class="flex items-start space-x-3">
-          {#if link.icon}
-            <div class="text-3xl flex-shrink-0">{link.icon}</div>
-          {/if}
+          <!-- 真实网站图标 -->
+          <div class="flex-shrink-0 w-8 h-8 relative">
+            <img 
+              src={getFaviconUrl(link.url)} 
+              alt={link.title}
+              class="w-8 h-8 rounded"
+              on:error={(e) => handleFaviconError(e, link)}
+            />
+            {#if link.icon}
+              <div class="text-3xl absolute top-0 left-0 hidden">{link.icon}</div>
+            {/if}
+          </div>
+          
           <div class="flex-1 min-w-0">
             <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors truncate">
               {link.title}
